@@ -1,108 +1,24 @@
-1 Courtyard South (Start)
-
-Description:
-You awaken in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  There are no obvious
-exits to the courtyard.  You are surrounded by walls to the south, east, and west but can walk around the building.  
-The building has one barred window on the side you can see.  You can hear a bird chirping.  On the ground, there is a 
-stone saying “Get to the roof”.
-End 
-
-Objects to interact With:
-None
-
-Exit Room: W- Courtyard West, E- Courtyard East
-
-
-
-2 Courtyard East
-
-Description: 
-You are currently in the east end of the courtyard.  There is an empty backpack on the ground with the words “holds
-20 objects” stenciled on.
-End
-
-Objects to interact With: Backpack (take)
-
-Exit Room: N- Courtyard North, S- Courtyard South
-
- 
-
-3 Courtyard West
-
-Description: 
-You are currently in the west end of the courtyard.  There is one tree with a bird nest about 50 feet up.  
-The sun is reflecting off something metallic in the nest.  There is a sign saying “The Magic Word is XYZZY”.
-End
-
-Objects to interact With: Tree (climb), Key in Nest (take)
-
-Exit Room: N- Courtyard North, S- Courtyard South
-
- 
-
-4 Courtyard North
-
-Description:
+COURTYARD_SOUTH:Courtyard South
+You awaken in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  There are no obvious exits to the courtyard.  You are surrounded by walls to the south, east, and west but can walk around the building.  The building has one barred window on the side you can see.  You can hear a bird chirping.  On the ground, there is a stone saying “Get to the roof”.
+W-Courtyard West, E-Courtyard East
+COURTYARD_EAST:Courtyard East
+You are currently in the east end of the courtyard.  There is an empty backpack on the ground with the words “holds 20 objects” stenciled on.
+N-Courtyard North, S-Courtyard South
+COURTYARD_WEST:Courtyard West
+You are currently in the west end of the courtyard.  There is one tree with a bird nest about 50 feet up.  The sun is reflecting off something metallic in the nest.  There is a sign saying “The Magic Word is XYZZY”.
+N-Courtyard North, S-Courtyard South
+COURTYARD_NORTH:Courtyard North
 You are currently in the north end of the courtyard.  There is a locked door on this side of the building.
-End
-
-Objects to interact With: Door (open with key)
-
-Exit Room: W- Courtyard West, E- Courtyard East, South- Hall (through door with key)
-
- 
-
-5 Hall North
-
-Description: 
-You are at the north end of a long hall.  Behind you, there is a door leading to the courtyard.  At the end of 
-the hallway on the south end, there are two doors and an elevator.
-End
-
-Objects to interact With: None
-
-Exit Room: N- Courtyard North, S-Hall South
-
-
-
-6 Hall South
-
-Description: 
-You are at the south end of a long hall.  There are two doors: one to the east and one to the west.
-In front of you, there is an elevator that doesn’t seem to operate due to a lack of electricity.  There
-is a sign on the wall saying “Turn on the power to go up”.
-End
-
-Objects to interact With: None
-
-Exit Room: N- Hall North, East- Kitchen, West- Library, South- Elevator (with power)
-
-
-7 Kitchen
-
-Description:
+W-Courtyard West, E-Courtyard East, S-Hall
+HALL_NORTH:Hall North 
+You are at the north end of a long hall.  Behind you, there is a door leading to the courtyard.  At the end of the hallway on the south end, there are two doors and an elevator.
+N-Courtyard North, S-Hall South
+HALL_SOUTH:Hall South
+You are at the south end of a long hall.  There are two doors: one to the east and one to the west.  In front of you, there is an elevator that doesn’t seem to operate due to a lack of electricity.  There is a sign on the wall saying “Turn on the power to go up”.
+N-Hall North, E-Kitchen, W-Library, S-Elevator 
+KITCHEN:Kitchen
 You are in a kitchen.  There is a bag of apples and a butcher knife on the counter and a flashlight.   
-End
-
-Objects to interact With: None
-
-Exit Room: West- Hall South
-
-
-
-8 Library
-
-Description: 
-You are in a library with a dusty bookcase which contains the books “The Life and History of Shon Czinner”, 
-“How to Properly Cook a Chicken”, “A History of Hidden Staircases”, and “The Advanced Guide to Having Swag, 
-By: Shon Czinner”.
-End
-
-Objects to interact With: Each book (take), A History of Hidden Staircases (read: “all hidden staircases are opened by saying the magic word”)
-
-Exit Room: East- Hall South, West- Hidden Staircase (if Magic Word is Said)
-
- 
-
-
- 
+W-Hall South
+LIBRARY:Library
+You are in a library with a dusty bookcase which contains the books “The Life and History of Shon Czinner”, “How to Properly Cook a Chicken”, “A History of Hidden Staircases”, and “The Advanced Guide to Having Swag, By: Shon Czinner”.
+E-Hall South, W-Hidden Staircase 

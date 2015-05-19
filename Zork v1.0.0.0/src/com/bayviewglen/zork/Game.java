@@ -39,7 +39,7 @@ class Game
     	Scanner roomScanner;
 		try {
 			HashMap<String, HashMap<String, String>> exits = new HashMap<String, HashMap<String, String>>();    
-			roomScanner = new Scanner(new File(fileName));
+			roomScanner = new Scanner(new File("data/rooms.dat"));
 			while(roomScanner.hasNext()){
 				Room room = new Room();
 				// Read the Name
