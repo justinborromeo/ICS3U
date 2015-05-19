@@ -131,7 +131,7 @@ class Game
     {
         System.out.println();
         System.out.println("Welcome to Zork!");
-        System.out.println("Zork is a new, incredibly boring adventure game.");
+        System.out.println("Zork is dope bro.  This game was blessed by Coding Noob Daniel.  For in-game bugs or complaints, contact 647-822-0868 or zyan@bayviewglen.ca. ");
         System.out.println("Type 'help' if you need help.");
         System.out.println();
         System.out.println(currentRoom.longDescription());
