@@ -50,13 +50,15 @@ class Parser
 
         StringTokenizer tokenizer = new StringTokenizer(inputLine);
 
-        if(tokenizer.hasMoreTokens())
-            word1 = tokenizer.nextToken();      // get first word
-        else
+        if(tokenizer.hasMoreTokens()){
+            word1 = tokenizer.nextToken();
+        	word1=word1.toLowerCase();// get first word
+        }else
             word1 = null;
-        if(tokenizer.hasMoreTokens())
-            word2 = tokenizer.nextToken();      // get second word
-        else
+        if(tokenizer.hasMoreTokens()){
+            word2 = tokenizer.nextToken();   
+            word2=word2.toLowerCase();// get second word
+        }else
             word2 = null;
 
         // note: we just ignore the rest of the input line.
