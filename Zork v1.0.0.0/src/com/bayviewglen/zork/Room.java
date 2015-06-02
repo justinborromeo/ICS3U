@@ -26,7 +26,9 @@ class Room{
     private HashMap<String, Room> exits;        // stores exits of this room.
     private boolean locked;
     private Inventory roominv;
+    private String enemytype;
     private boolean beenhere;
+    
 
     /**
      * Create a room described "description". Initially, it has no exits.
@@ -172,6 +174,14 @@ class Room{
 
 	public void setBeenhere(boolean beenhere) {
 		this.beenhere = beenhere;
+	}
+
+	public String getEnemytype() {
+		return enemytype;
+	}
+
+	public void setEnemytype(String enemytype) {
+		this.enemytype = enemytype;
 	}
 	
 	
