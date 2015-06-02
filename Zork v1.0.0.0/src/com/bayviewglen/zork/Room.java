@@ -14,24 +14,34 @@ package com.bayviewglen.zork;
  * to the neighbouring room, or null if there is no exit in that direction.
  */
 
+import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
-class Room 
-{
+
+class Room{	
 	private String roomName;
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
+    private boolean locked;
+    private Inventory roominv;
+    private String enemytype;
+    private boolean beenhere;
+    private String keyname;
+    
 
     /**
      * Create a room described "description". Initially, it has no exits.
      * "description" is something like "a kitchen" or "an open court yard".
      */
-    public Room(String description) 
+    public Room(String description, boolean locked) 
     {
         this.description = description;
         exits = new HashMap<String, Room>();
+        this.setLocked(locked);
+        setBeenhere(false);
+
     }
 
     public Room() {
@@ -39,6 +49,7 @@ class Room
     	roomName = "DEFAULT ROOM";
     	description = "DEFAULT DESCRIPTION";
     	exits = new HashMap<String, Room>();
+    	setLocked(false);
 	}
 
     public void setExit(char direction, Room r) throws Exception{
@@ -84,7 +95,7 @@ class Room
      */
     public String shortDescription()
     {
-        return "Room: " + roomName +"\n\n" + description;
+        return roomName +"\n\n" + description;
     }
 
     /**
@@ -95,7 +106,7 @@ class Room
     public String longDescription()
     {
     	
-        return "Room: " + roomName +"\n\n" + description + "\n" + exitString();
+        return roomName +"\n\n" + description + "\n" + exitString();
     }
 
     /**
@@ -117,7 +128,7 @@ class Room
      */
     public Room nextRoom(String direction) 
     {
-        return (Room)exits.get(direction);
+       	return (Room)exits.get(direction);
     }
 
 	public String getRoomName() {
@@ -135,4 +146,53 @@ class Room
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+
+	public void unLock() {
+		setLocked(false);
+	}
+
+	public boolean isLocked() {
+		return locked;
+	}
+
+	public void setLocked(boolean locked) {
+		this.locked = locked;
+	}
+
+
+	public Inventory getInventory() {
+		return roominv;
+	}
+
+	public void setInventory(Inventory inventory) {
+		this.roominv = inventory;
+	}
+
+	public boolean isBeenhere() {
+		return beenhere;
+	}
+
+	public void setBeenhere(boolean beenhere) {
+		this.beenhere = beenhere;
+	}
+
+	public String getEnemytype() {
+		return enemytype;
+	}
+
+	public void setEnemytype(String enemytype) {
+		this.enemytype = enemytype;
+	}
+
+	public String getKeyname() {
+		return keyname;
+	}
+
+	public void setKeyname(String keyname) {
+		this.keyname = keyname;
+	}
+	
+	
+
 }

@@ -33,7 +33,6 @@ class Command
      * indicate that this was a command that is not recognised by this game.
      */
     
-    //Justin  rocks
     public Command(String firstWord, String secondWord)
     {
         commandWord = firstWord;
