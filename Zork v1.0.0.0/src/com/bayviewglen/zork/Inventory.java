@@ -3,7 +3,8 @@ package com.bayviewglen.zork;
 import java.util.HashMap;
 
 public class Inventory {
- private HashMap<String, Item> inventory = new HashMap<String, Item>();
+private HashMap<String, Item> inventory = new HashMap<String, Item>();
+
  
  
 Inventory(){
@@ -27,4 +28,6 @@ Inventory(){
 	return item;
 	 
  }
+ 
+ 
 }

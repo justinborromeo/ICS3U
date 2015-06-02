@@ -20,8 +20,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 
-class Room implements Lockable
-{	
+class Room{	
 	private String roomName;
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.
@@ -126,7 +125,7 @@ class Room implements Lockable
      */
     public Room nextRoom(String direction) 
     {
-        return (Room)exits.get(direction);
+       	return (Room)exits.get(direction);
     }
 
 	public String getRoomName() {
@@ -174,5 +173,7 @@ class Room implements Lockable
 	public void setBeenhere(boolean beenhere) {
 		this.beenhere = beenhere;
 	}
+	
+	
 
 }

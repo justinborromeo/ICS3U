@@ -26,7 +26,7 @@ public class Player {
 	public static void setName(String name) {
 		Player.name = name;
 	}
-
+	
 	
 
 }

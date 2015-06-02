@@ -55,8 +55,11 @@ class Game
 				}
 				masterRoomMap.get(roomName.toUpperCase().substring(roomName.indexOf(":")+1).trim().replaceAll(" ",  "_")).setInventory(tempinv);	
 				
-				
-				
+				String lockedline=roomScanner.nextLine();
+				String locked=lockedline.split(":")[1].trim();
+				if(locked.toUpperCase().equals("YES")){
+				masterRoomMap.get(roomName.toUpperCase().substring(roomName.indexOf(":")+1).trim().replaceAll(" ", "_")).setLocked(true);
+				}
 					
 				
 				
@@ -176,6 +179,8 @@ class Game
         		Player.setPlayerInv(tempinventory);
         		System.out.println("Taken!");
         		currentRoom.setBeenhere(true);
+        	}else if (commandWord.equals("drop")){
+        	
         	}else{
         		System.out.println("There are no "+secondWord+"s at this location!");
         		currentRoom.setBeenhere(true);
@@ -190,28 +195,61 @@ class Game
                 System.out.println("Quit what?");
             else
                 return true;  // signal that we want to quit
-       	}else if (commandWord.equals("eat")){
+       	}else if(commandWord.equals("unlock door")){
+       		//Unlock mechanism
+    	
+    	}else if (commandWord.equals("eat")){
         	System.out.println("Do you really think you should be eating at a time like this?");
         }else if((commandWord.equals("east")||commandWord.equals("north")||commandWord.equals("south")||
         		commandWord.equals("west")||commandWord.equals("up")||commandWord.equals("down"))){
         	if (commandWord.equals("east")&&(currentRoom.nextRoom("east")!=null)){
+        		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("east");
+        		if(currentRoom.isLocked()){
+        			currentRoom=oldroom;
+        			System.out.println("That door is locked!!!");
+        		}
         	}else if (commandWord.equals("north")&&(currentRoom.nextRoom("north")!=null)){
+        		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("north");
+        		if(currentRoom.isLocked()){
+        			currentRoom=oldroom;
+        			System.out.println("That room is locked!!!  You cannot go there!!!");
+        		}
         	}else if (commandWord.equals("west")&&(currentRoom.nextRoom("west")!=null)){
+        		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("west");
+        		if(currentRoom.isLocked()){
+        			currentRoom=oldroom;
+        			System.out.println("That room is locked!!!  You cannot go there!!!");
+        		}
         	}else if (commandWord.equals("south")&&(currentRoom.nextRoom("south")!=null)){
+        		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("south");
+        		if(currentRoom.isLocked()){
+        			currentRoom=oldroom;
+        			System.out.println("That room is locked!!!  You cannot go there!!!");
+        		}
         	}else if (commandWord.equals("up")&&(currentRoom.nextRoom("up")!=null)){
+        		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("up");
+        		if(currentRoom.isLocked()){
+        			currentRoom=oldroom;
+        			System.out.println("That room is locked!!!  You cannot go there!!!");
+        		}
         	}else if (commandWord.equals("down")&&(currentRoom.nextRoom("down")!=null)){
+        		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("down");
+        		if(currentRoom.isLocked()){
+        			currentRoom=oldroom;
+        			System.out.println("That room is locked!!!  You cannot go there!!!");
+        		}
            	}else{
         		System.out.println("There is nothing in this direction!!!");
         	}

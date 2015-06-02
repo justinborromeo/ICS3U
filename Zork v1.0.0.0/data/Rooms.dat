@@ -2,35 +2,49 @@ COURTYARD_SOUTH: Courtyard South
 Room Description: You are in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  There are no <br>obvious exits to the courtyard.  You are surrounded by walls to the south, east, and west but can walk around<br>the building.  The building has one barred window on the side you can see.  You can hear a bird chirping.  <br>On the ground, there is a stone saying “Get to the roof”.
 Exit Rooms: W-Courtyard West, E-Courtyard East
 Items: Stone
+Locked: Yes
 COURTYARD_EAST: Courtyard East
 Room Description: You are currently in the east end of the courtyard.  A stream slowly gurgles across this part of the courtyard<br>before leaving through a 3-inch wide drainpipe in the courtyard wall.
 Exit Rooms: N-Courtyard North, S-Courtyard South
 Items: 
+Locked: No
 COURTYARD_WEST: Courtyard West
 Room Description: You are currently in the west end of the courtyard.  There is a very tall tree here which seems climbable.
 Exit Rooms: N-Courtyard North, S-Courtyard South, U-Tree
 Items: 
+Locked: No
 TREE: Tree
 Room Description: You have climbed the tree, there is a bird nest immediately beside you which contains a shiny silver key
 Exit Rooms: D-Courtyard West
 Items: Key
+Locked: No
 COURTYARD_NORTH: Courtyard North
 Room Description: You are currently in the north end of the courtyard.  There is a door on this side of the building.
 Exit Rooms: W-Courtyard West, E-Courtyard East, S-Hall North
 Items: 
+Locked: No
 HALL_NORTH: Hall North 
 Room Description: You are at the north end of a long hall.  Behind you, there is a door leading to the courtyard.<br>At the south end of the hallway, there are two doors and an elevator.
 Exit Rooms: N-Courtyard North, S-Hall South
 Items: 
+Locked: No
 HALL_SOUTH: Hall South
-Room Description: You are at the south end of a long hall.  There are two doors: one to the east and one to the west.  There is a sign on the wall saying “go up”.
+Room Description: You are at the south end of a long hall.  There are two doors: one to the east and one to the west. 
 Exit Rooms: N-Hall North, E-Kitchen, W-Library
 Items: 
+Locked: No
 KITCHEN: Kitchen
 Room Description: You are in a kitchen.  There is a bag of apples and a knife on the counter and a flashlight.   
 Exit Rooms: W-Hall South
 Items: apples, knife, flashlight
+Locked: No
 LIBRARY: Library
-Room Description: You are in a library with a dusty bookcase which contains the books “Shon”, “Chickens”, “Staircases”, and “Swag”.
-Exit Rooms: E-Hall South
-Items: shon, chickens, staircases, swag
+Room Description: You are in the library.  There are many books here.  There is a locked door to the west.
+Exit Rooms: E-Hall South, W-Bottom of Staircase
+Items: books
+Locked: No
+BOTTOM_OF_STAIRCASE: Bottom of Staircase
+Room Description: You are in a dark, foreboding staircase.
+Exit Rooms: U-Top of Staircase, E-Library
+Items: 
+Locked: Yes
