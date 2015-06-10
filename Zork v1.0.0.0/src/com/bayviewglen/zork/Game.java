@@ -147,7 +147,7 @@ class Game {
      */
     private void printWelcome() {
         System.out.println();
-        System.out.println("Hello " + Player.getName() + " and welcome to Zork!!!  Zork is an incredibly fun adventure game programmed by Shon and Justin.");
+        System.out.println("Hello " + player.getName() + " and welcome to Zork!!!  Zork is an incredibly fun adventure game programmed by Shon and Justin.");
         System.out.println("If you ever need help while playing the game, type in 'help'.  Now, press Enter to continue.");
         String useless = keyboard.nextLine();
         System.out.println();
@@ -183,7 +183,8 @@ class Game {
                 Inventory currentroominventory = currentRoom.getInventory();
                 Item toTake = currentroominventory.getItem(secondWord);
                 currentroominventory.removeItem(toTake);
-                Player.setPlayerInv(tempinventory);
+                tempinventory.addItem(toTake);
+                player.setPlayerInv(tempinventory);
                 System.out.println("Taken!");
                 currentRoom.setBeenhere(true);
             } else if (commandWord.equals("drop")) {
@@ -194,6 +195,9 @@ class Game {
             }
         } else if (commandWord.equals("inv")) {
             //PrintInventory
+        	System.out.println("Your invenvtory:");
+        	player.getPlayerInv().print();   
+        	
         } else if (commandWord.equals("attack")) {
             if (secondWord.equals(null)) {
                 System.out.println("Attack what?");
@@ -223,7 +227,7 @@ class Game {
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("east");
-        		if(currentRoom.isLocked()&&!HasKey(Player.getPlayerInv(), currentRoom.getKeyname())){
+        		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
         			System.out.println("That door is locked!!!");
         		}
@@ -231,7 +235,7 @@ class Game {
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("north");
-        		if(currentRoom.isLocked()&&!HasKey(Player.getPlayerInv(),currentRoom.getKeyname())){
+        		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(),currentRoom.getKeyname())){
         			currentRoom=oldroom;
         			System.out.println("That room is locked!!!  You cannot go there!!!");
         		}
@@ -239,7 +243,7 @@ class Game {
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("west");
-        		if(currentRoom.isLocked()&&!HasKey(Player.getPlayerInv(), currentRoom.getKeyname())){
+        		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
         			System.out.println("That room is locked!!!  You cannot go there!!!");
         		}
@@ -247,7 +251,7 @@ class Game {
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("south");
-        		if(currentRoom.isLocked()&&!HasKey(Player.getPlayerInv(), currentRoom.getKeyname())){
+        		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
         			System.out.println("That room is locked!!!  You cannot go there!!!");
         		}
@@ -255,7 +259,7 @@ class Game {
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("up");
-        		if(currentRoom.isLocked()&&!HasKey(Player.getPlayerInv(), currentRoom.getKeyname())){
+        		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
         			System.out.println("That room is locked!!!  You cannot go there!!!");
         		}
@@ -263,7 +267,7 @@ class Game {
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
         		currentRoom=currentRoom.nextRoom("down");
-        		if(currentRoom.isLocked()&&!HasKey(Player.getPlayerInv(), currentRoom.getKeyname())){
+        		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
         			System.out.println("That room is locked!!!  You cannot go there!!!");
         		}
@@ -319,7 +323,7 @@ class Game {
         Troll troll = new Troll(20, 100, 50, 3);
         int playerhealth = player.getPlayerhealth();
         int playerspeed = 50;
-        int playeraccuracy = player.ACCURACY;
+        int playeraccuracy = player.getACCURACY();
         int enemyhealth = troll.getTrollhealth();
         int enemyspeed = troll.getTrollspeed();
         int enemyaccuracy = troll.getTrollaccuracy();

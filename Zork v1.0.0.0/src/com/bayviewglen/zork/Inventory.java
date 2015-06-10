@@ -28,6 +28,14 @@ Inventory(){
 	return item;
 	 
  }
+
+public void print() {
+	for (String name: inventory.keySet()){
+
+        System.out.println("item: " + name);  
+
+	} 
+}
  
  
 }

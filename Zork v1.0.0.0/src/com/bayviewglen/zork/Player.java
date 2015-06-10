@@ -1,39 +1,42 @@
 package com.bayviewglen.zork;
 
-import java.util.Collection;
+
 
 public class Player {
 
-	private static String name;
-	private static Inventory playerinv;
-	private static int playerhealth;
-	static final int PLAYER_SPEED=50;
-	static final int ACCURACY=50;
-	static final int ATTACK=10;
+	private String name;
+	private  Inventory playerinv;
+	private int playerhealth;
+	private int PLAYER_SPEED;
+	private int ACCURACY;
+	private int ATTACK;
 	
+	public Player(String name){
+		this.name = name;
+		this.playerinv=new Inventory();
+		playerhealth=50;
+		PLAYER_SPEED=50;
+		ACCURACY=50;
+		ATTACK=10;
+	}
 	
-	public static int getPlayerSpeed() {
+	public int getPlayerSpeed() {
 		return PLAYER_SPEED;
 	}
 
-	public Player(String name){
-		Player.name = name;
-		this.playerinv=new Inventory();
-		playerhealth=50;
-		
-	}
 	
-	public static Inventory getPlayerInv() {
+	
+	public Inventory getPlayerInv() {
 		return playerinv;
 	}
-	public static void setPlayerInv(Inventory playerinv) {
-		Player.playerinv = playerinv;
+	public void setPlayerInv(Inventory playerinv) {
+      this.playerinv = playerinv;
 	}
-	public static String getName() {
+	public String getName() {
 		return name;
 	}
-	public static void setName(String name) {
-		Player.name = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getPlayerhealth() {
@@ -41,8 +44,26 @@ public class Player {
 	}
 
 	public void setPlayerhealth(int playerhealth) {
-		Player.playerhealth = playerhealth;
+		this.playerhealth = playerhealth;
 	}
+
+	public int getACCURACY() {
+		return ACCURACY;
+	}
+
+	public void setACCURACY(int aCCURACY) {
+		ACCURACY = aCCURACY;
+	}
+
+	public int getATTACK() {
+		return ATTACK;
+	}
+
+	public void setATTACK(int aTTACK) {
+		ATTACK = aTTACK;
+	}
+
+
 	
 	
 
