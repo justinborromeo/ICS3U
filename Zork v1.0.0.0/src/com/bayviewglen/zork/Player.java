@@ -1,39 +1,51 @@
 package com.bayviewglen.zork;
 
-import java.util.Collection;
+import java.io.Serializable;
 
-public class Player {
 
-	private static String name;
-	private static Inventory playerinv;
-	private static int playerhealth;
-	static final int PLAYER_SPEED=50;
-	static final int ACCURACY=50;
-	static final int ATTACK=10;
+
+public class Player implements Serializable{
+
+	private String name;
+	private  Inventory playerinv;
+	private  Inventory equipped;
+	private int playerhealth;
+	private int BASE_PLAYER_SPEED=50;
+	private int BASE_ACCURACY=75;
+	private int BASE_ATTACK=10;
+	private int PLAYER_SPEED;
+	private int ATTACK;
+	private int ACCURACY;
 	
+	public Player(String name){
+		this.name = name;
+		playerinv=new Inventory();
+		setEquipped(new Inventory());
+		playerhealth=50;
+		ACCURACY=BASE_ACCURACY;
+		ATTACK=BASE_ATTACK;
+	}
 	
-	public static int getPlayerSpeed() {
+	public int getPlayerSpeed() {
 		return PLAYER_SPEED;
 	}
 
-	public Player(String name){
-		Player.name = name;
-		this.playerinv=new Inventory();
-		playerhealth=50;
-		
+	public void setPlayerSpeed(int n) {
+	PLAYER_SPEED=n;
 	}
+
 	
-	public static Inventory getPlayerInv() {
+	public Inventory getPlayerInv() {
 		return playerinv;
 	}
-	public static void setPlayerInv(Inventory playerinv) {
-		Player.playerinv = playerinv;
+	public void setPlayerInv(Inventory playerinv) {
+      this.playerinv = playerinv;
 	}
-	public static String getName() {
+	public String getName() {
 		return name;
 	}
-	public static void setName(String name) {
-		Player.name = name;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getPlayerhealth() {
@@ -41,8 +53,43 @@ public class Player {
 	}
 
 	public void setPlayerhealth(int playerhealth) {
-		Player.playerhealth = playerhealth;
+		this.playerhealth = playerhealth;
 	}
+
+	public int getACCURACY() {
+		return ACCURACY;
+	}
+
+	public void setACCURACY(int aCCURACY) {
+		ACCURACY = aCCURACY;
+	}
+
+	public int getATTACK() {
+		return ATTACK;
+	}
+
+	public void setATTACK(int aTTACK) {
+		ATTACK = aTTACK;
+	}
+
+	public Inventory getEquipped() {
+		return equipped;
+	}
+
+	public void setEquipped(Inventory equipped) {
+		this.equipped = equipped;
+	}
+
+	public void displayPlayerStats() {
+	System.out.println("Stats total: ");
+		System.out.println("Attack: " + ATTACK);
+		System.out.println("Accuracy: " + ACCURACY);
+		System.out.println("Health: " + playerhealth);
+		System.out.println("Equipped:");
+		equipped.print();
+	}
+
+
 	
 	
 

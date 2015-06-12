@@ -1,14 +1,14 @@
 package com.bayviewglen.zork;
 
-public class MountainKing {
+import java.io.Serializable;
+
+public class BarbarianKing implements Serializable{
 	private int kinghealth;
-	private int kingspeed;
 	private int kingaccuracy;
 		
-	public MountainKing(int health, int speed, int accuracy) {
-			setKinghealth(health);
-			setKingspeed(speed);
-			setKingaccuracy(accuracy);
+	public BarbarianKing(int health, int accuracy) {
+			kinghealth=health;
+			kingaccuracy=accuracy;
 	}
 
 	public int getKinghealth() {
@@ -17,14 +17,6 @@ public class MountainKing {
 
 	public void setKinghealth(int kinghealth) {
 		this.kinghealth = kinghealth;
-	}
-
-	public int getKingspeed() {
-		return kingspeed;
-	}
-
-	public void setKingspeed(int kingspeed) {
-		this.kingspeed = kingspeed;
 	}
 
 	public int getKingaccuracy() {

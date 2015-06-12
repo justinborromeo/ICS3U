@@ -1,4 +1,6 @@
 package com.bayviewglen.zork;
+
+import java.io.Serializable;
 /*
  * Author:  Michael Kolling.
  * Version: 1.0
@@ -10,12 +12,14 @@ package com.bayviewglen.zork;
  * This class is part of the "Zork" game.
  */
 
-class CommandWords
+class CommandWords implements Serializable
 {
     // a constant array that holds all valid command words
     private static final String validCommands[] = {
 
-       "quit", "help", "eat", "east", "west", "north", "south", "up", "down", "open", "go", "take", "inv", "attack"
+    	 "save", "drop", "quit", "help", "eat", "east", "west", "north", "south", "up", "down", "open", "go", "take", "inv", "attack", "equip", "unequip"
+
+    	
 
     };
 
