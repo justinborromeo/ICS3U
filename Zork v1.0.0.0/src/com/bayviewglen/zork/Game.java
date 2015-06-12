@@ -24,6 +24,7 @@ class Game implements Serializable{
     private boolean dead;
     private Scanner keyboard=new Scanner(System.in);
     private HashMap<String, Equipable> equipables;
+    private HashMap<String, Food> foods;
     
     // This is a MASTER object that contains all of the rooms and is easily accessible.
     // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
@@ -117,7 +118,22 @@ class Game implements Serializable{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+    }	
+    	private void initFoods(String fileName){
+        	foods = new HashMap<String, Food>();
+        	Scanner fileScanner;
+        	try {
+    			fileScanner = new Scanner(new File(fileName));
+    			while(fileScanner.hasNext()){
+    				String[] temp = fileScanner.nextLine().split("~");
+    				Food temp2 = new Food(temp[0], Integer.parseInt(temp[1]));
+    					
+    				foods.put(temp[0], temp2);
+    			}
+    		} catch (FileNotFoundException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}
 		
     }
     
@@ -130,6 +146,7 @@ class Game implements Serializable{
 	        try {
 				initRooms("data/Rooms.dat");
 				initEquipables("data/equipable.dat");
+				initFoods("data/foods.dat");
 				currentRoom = masterRoomMap.get("COURTYARD_SOUTH");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -230,7 +247,7 @@ class Game implements Serializable{
             goRoom(command);
             currentRoom.setBeenhere(true);
         }  else if (commandWord.equals("unequip")) {
-      	  if (player.getEquipped().contains(secondWord)) {
+      	  if (secondWord!=null&&player.getEquipped().contains(secondWord)) {
     		  Inventory temp = player.getPlayerInv();
     		  Inventory temp2 = player.getEquipped();
     		  temp.addItem(player.getEquipped().getItem(secondWord));
@@ -243,10 +260,12 @@ class Game implements Serializable{
     		  player.setATTACK((int) (player.getATTACK()*equipables.get(secondWord).getATTACKmultiplier()));
     		  player.setPlayerhealth((int) (player.getPlayerhealth()*equipables.get(secondWord).getPlayerhealthmultiplier()));
     		  player.setPlayerSpeed((int) (player.getPlayerSpeed()*equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
+    		  
+    		 player.displayPlayerStats();
     	  }
         currentRoom.setBeenhere(true);
     }else if (commandWord.equals("equip")) {
-        	  if (player.getPlayerInv().contains(secondWord)&&equipables.containsKey(secondWord)) {
+        	  if (secondWord!=null&&player.getPlayerInv().contains(secondWord)&&equipables.containsKey(secondWord)) {
         		  Inventory temp = player.getPlayerInv();
         		  Inventory temp2 = player.getEquipped();
         		  temp2.addItem(player.getPlayerInv().getItem(secondWord));
@@ -259,10 +278,11 @@ class Game implements Serializable{
         		  player.setATTACK((int) (player.getATTACK()/equipables.get(secondWord).getATTACKmultiplier()));
         		  player.setPlayerhealth((int) (player.getPlayerhealth()/equipables.get(secondWord).getPlayerhealthmultiplier()));
         		  player.setPlayerSpeed((int) (player.getPlayerSpeed()/equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
+        		  player.displayPlayerStats();
         	  }
             currentRoom.setBeenhere(true);
         }else if (commandWord.equals("take")) {
-            if (currentRoom.getInventory().contains(secondWord)) {
+            if (secondWord!=null&&currentRoom.getInventory().contains(secondWord)) {
                 Inventory tempinventory = player.getPlayerInv();
                 Inventory currentroominventory = currentRoom.getInventory();
                 Item toTake = currentroominventory.getItem(secondWord);
@@ -271,16 +291,31 @@ class Game implements Serializable{
                 player.setPlayerInv(tempinventory);
                 System.out.println("Taken!");
                 currentRoom.setBeenhere(true);
-            } else if (commandWord.equals("drop")) {
-
-            } else {
+            }  else {
                 System.out.println("There are no " + secondWord + "s at this location!");
+                currentRoom.setBeenhere(true);
+            }
+            
+        }else if (commandWord.equals("drop")) {
+        	if (secondWord!=null&&player.getPlayerInv().contains(secondWord)) {
+                Inventory tempinventory = player.getPlayerInv();
+                Inventory currentroominventory = currentRoom.getInventory();
+                Item toTake = tempinventory.getItem(secondWord);
+                currentroominventory.addItem(toTake);
+                tempinventory.removeItem(toTake);
+                player.setPlayerInv(tempinventory);
+                System.out.println("Dropped!");
+                currentRoom.setBeenhere(true);
+            }  else {
+                System.out.println("You don't have a single " + secondWord + " in your inventory or unequipped...");
                 currentRoom.setBeenhere(true);
             }
         } else if (commandWord.equals("inv")) {
             //PrintInventory
         	System.out.println("Your inventory:");
-        	player.getPlayerInv().print();   
+        	player.getPlayerInv().print();  
+        	System.out.println("Current Health:" + player.getPlayerhealth());
+        	
         	
         } else if (commandWord.equals("attack")) {
             if (secondWord.equals(null)) {
@@ -315,7 +350,14 @@ class Game implements Serializable{
                 return true;
             }
         } else if (commandWord.equals("eat")) {
-            System.out.println("Do you really think you should be eating at a time like this?");
+        	if(secondWord!=null&&player.getPlayerInv().contains(secondWord)&&foods.containsKey(secondWord)){
+        		player.setPlayerhealth(player.getPlayerhealth()+foods.get(secondWord).getHeal());
+        	Inventory temp = player.getPlayerInv();
+       		  temp.removeItem(player.getPlayerInv().getItem(secondWord));
+       		  player.setPlayerInv(temp);
+       		  System.out.println("Eaten! HP: " + player.getPlayerhealth());
+        	}else
+            System.out.println("What are you trying to eat???");
         } else if ((commandWord.equals("east") || commandWord.equals("north") || commandWord.equals("south") ||
                 commandWord.equals("west") || commandWord.equals("up") || commandWord.equals("down"))) {
         	

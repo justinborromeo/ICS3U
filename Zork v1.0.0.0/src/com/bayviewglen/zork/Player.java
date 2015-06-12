@@ -78,6 +78,15 @@ public class Player implements Serializable{
 		this.equipped = equipped;
 	}
 
+	public void displayPlayerStats() {
+	System.out.println("Stats total: ");
+		System.out.println("Attack: " + ATTACK);
+		System.out.println("Accuracy: " + ACCURACY);
+		System.out.println("Health: " + playerhealth);
+		System.out.println("Equipped:");
+		equipped.print();
+	}
+
 
 	
 	
