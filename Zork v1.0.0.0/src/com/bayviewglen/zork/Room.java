@@ -14,13 +14,14 @@ package com.bayviewglen.zork;
  * to the neighbouring room, or null if there is no exit in that direction.
  */
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.Iterator;
 
 
-class Room{	
+class Room implements Lockable, Serializable {	
 	private String roomName;
     private String description;
     private HashMap<String, Room> exits;        // stores exits of this room.

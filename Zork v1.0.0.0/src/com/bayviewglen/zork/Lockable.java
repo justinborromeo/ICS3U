@@ -3,6 +3,8 @@
  */
 package com.bayviewglen.zork;
 
-public interface Lockable {
+import java.io.Serializable;
+
+public interface Lockable{
 	public void unLock();
 }

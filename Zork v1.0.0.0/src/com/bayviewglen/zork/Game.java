@@ -1,19 +1,30 @@
 package com.bayviewglen.zork;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
 
-class Game {
+
+class Game implements Serializable{
     private Parser parser;
     private Room currentRoom;
     private Player player=new Player("empty");
     private boolean dead;
-
-    
     private Scanner keyboard=new Scanner(System.in);
+    
+    
     // This is a MASTER object that contains all of the rooms and is easily accessible.
     // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
     // In a hashmap keys are case sensitive.
@@ -95,13 +106,16 @@ class Game {
      * Create the game and initialise its internal map.
      */
     public Game() {
-        try {
-			initRooms("data/Rooms.dat");
-			currentRoom = masterRoomMap.get("COURTYARD_SOUTH");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	
+ 
+	        try {
+				initRooms("data/Rooms.dat");
+				currentRoom = masterRoomMap.get("COURTYARD_SOUTH");
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+    	
         parser = new Parser();
     }
 
@@ -112,12 +126,30 @@ class Game {
      * @throws InterruptedException 
      */
     public void play() throws InterruptedException 
-    {   
-    	System.out.println("What is your name?");
+    { 
+    	System.out.println("If you'd like to use a savefile type YES and press enter, if not press literally anything else");
+	if(keyboard.nextLine().equalsIgnoreCase("yes")){
+		try {
+			FileInputStream f_in = new FileInputStream("data/savefile.dat");
+			 ObjectInputStream ois = new ObjectInputStream(f_in);
+		Object[] laziness = (Object[])ois.readObject();
+		currentRoom=(Room)laziness[0];
+		player=(Player)laziness[1];
+		masterRoomMap=(HashMap<String, Room>)laziness[2];
+		} catch (Exception ex) {
+			// TODO Auto-generated catch block
+			ex.printStackTrace();
+		}
+		
+	}
+    else{
+    	System.out.println("Please enter your name");
     	String name=keyboard.nextLine();
     	player.setName(name);
+    	}
     	printWelcome();
         
+    	
 
         // Enter the main command loop.  Here we repeatedly read commands and
         // execute them until the game is over.
@@ -195,7 +227,7 @@ class Game {
             }
         } else if (commandWord.equals("inv")) {
             //PrintInventory
-        	System.out.println("Your invenvtory:");
+        	System.out.println("Your inventory:");
         	player.getPlayerInv().print();   
         	
         } else if (commandWord.equals("attack")) {
@@ -213,11 +245,23 @@ class Game {
         } else if (commandWord.equals("quit")) {
             if (command.hasSecondWord())
                 System.out.println("Quit what?");
-            else
+            else{
+            	
+            	try {
+					FileOutputStream f_out = new FileOutputStream("data/savefile.dat");
+					ObjectOutputStream gamestate = new ObjectOutputStream(f_out);
+				
+					Object[] laziness = {currentRoom, player, masterRoomMap};
+					gamestate.writeObject(laziness);
+					
+					gamestate.close();
+					System.out.println("Game Saved.");
+					
+				} catch (Exception ex) {
+					ex.printStackTrace();
+				}
                 return true;
-        } else if (commandWord.equals("unlock door")) {
-            //Unlock mechanism
-
+            }
         } else if (commandWord.equals("eat")) {
             System.out.println("Do you really think you should be eating at a time like this?");
         } else if ((commandWord.equals("east") || commandWord.equals("north") || commandWord.equals("south") ||
@@ -226,6 +270,7 @@ class Game {
         	if (commandWord.equals("east")&&(currentRoom.nextRoom("east")!=null)){
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
+        		currentRoom.unLock();
         		currentRoom=currentRoom.nextRoom("east");
         		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
@@ -234,6 +279,7 @@ class Game {
         	}else if (commandWord.equals("north")&&(currentRoom.nextRoom("north")!=null)){
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
+        		currentRoom.unLock();
         		currentRoom=currentRoom.nextRoom("north");
         		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(),currentRoom.getKeyname())){
         			currentRoom=oldroom;
@@ -242,6 +288,7 @@ class Game {
         	}else if (commandWord.equals("west")&&(currentRoom.nextRoom("west")!=null)){
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
+        		currentRoom.unLock();
         		currentRoom=currentRoom.nextRoom("west");
         		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
@@ -250,6 +297,7 @@ class Game {
         	}else if (commandWord.equals("south")&&(currentRoom.nextRoom("south")!=null)){
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
+        		currentRoom.unLock();
         		currentRoom=currentRoom.nextRoom("south");
         		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
@@ -258,6 +306,7 @@ class Game {
         	}else if (commandWord.equals("up")&&(currentRoom.nextRoom("up")!=null)){
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
+        		currentRoom.unLock();
         		currentRoom=currentRoom.nextRoom("up");
         		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;
@@ -266,6 +315,7 @@ class Game {
         	}else if (commandWord.equals("down")&&(currentRoom.nextRoom("down")!=null)){
         		Room oldroom=currentRoom;
         		currentRoom.setBeenhere(true);
+        		currentRoom.unLock();
         		currentRoom=currentRoom.nextRoom("down");
         		if(currentRoom.isLocked()&&!HasKey(player.getPlayerInv(), currentRoom.getKeyname())){
         			currentRoom=oldroom;

@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class MountainKing {
+import java.io.Serializable;
+
+public class MountainKing implements Serializable{
 	private int kinghealth;
 	private int kingspeed;
 	private int kingaccuracy;

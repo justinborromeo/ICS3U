@@ -1,6 +1,8 @@
 package com.bayviewglen.zork;
 
-public class Troll{
+import java.io.Serializable;
+
+public class Troll implements Serializable{
 private int trollhealth;
 private int trollspeed;
 private int trollaccuracy;
