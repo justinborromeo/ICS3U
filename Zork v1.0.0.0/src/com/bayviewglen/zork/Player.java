@@ -8,6 +8,7 @@ public class Player implements Serializable{
 
 	private String name;
 	private  Inventory playerinv;
+	private  Inventory equipped;
 	private int playerhealth;
 	private int PLAYER_SPEED;
 	private int ACCURACY;
@@ -15,7 +16,8 @@ public class Player implements Serializable{
 	
 	public Player(String name){
 		this.name = name;
-		this.playerinv=new Inventory();
+		playerinv=new Inventory();
+		setEquipped(new Inventory());
 		playerhealth=50;
 		PLAYER_SPEED=50;
 		ACCURACY=50;
@@ -26,7 +28,10 @@ public class Player implements Serializable{
 		return PLAYER_SPEED;
 	}
 
-	
+	public void setPlayerSpeed(int n) {
+	PLAYER_SPEED=n;
+	}
+
 	
 	public Inventory getPlayerInv() {
 		return playerinv;
@@ -63,6 +68,14 @@ public class Player implements Serializable{
 
 	public void setATTACK(int aTTACK) {
 		ATTACK = aTTACK;
+	}
+
+	public Inventory getEquipped() {
+		return equipped;
+	}
+
+	public void setEquipped(Inventory equipped) {
+		this.equipped = equipped;
 	}
 
 

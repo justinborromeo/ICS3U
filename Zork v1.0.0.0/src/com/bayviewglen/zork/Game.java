@@ -23,7 +23,7 @@ class Game implements Serializable{
     private Player player=new Player("empty");
     private boolean dead;
     private Scanner keyboard=new Scanner(System.in);
-    
+    private HashMap<String, Equipable> equipables;
     
     // This is a MASTER object that contains all of the rooms and is easily accessible.
     // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
@@ -102,6 +102,25 @@ class Game implements Serializable{
 		}
     }    
 
+    private void initEquipables(String fileName){
+    	equipables = new HashMap<String, Equipable>();
+    	Scanner fileScanner;
+    	try {
+			fileScanner = new Scanner(new File(fileName));
+			while(fileScanner.hasNext()){
+				String[] temp = fileScanner.nextLine().split("~");
+				Equipable temp2 = new Equipable(temp[0], Double.parseDouble(temp[1]), Double.parseDouble(temp[2]),
+						Double.parseDouble(temp[3]), Double.parseDouble(temp[4]));
+				equipables.put(temp[0], temp2);
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+    }
+    
     /**
      * Create the game and initialise its internal map.
      */
@@ -110,6 +129,7 @@ class Game implements Serializable{
  
 	        try {
 				initRooms("data/Rooms.dat");
+				initEquipables("data/equipable.dat");
 				currentRoom = masterRoomMap.get("COURTYARD_SOUTH");
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
@@ -209,7 +229,39 @@ class Game implements Serializable{
         } else if (commandWord.equals("go")) {
             goRoom(command);
             currentRoom.setBeenhere(true);
-        } else if (commandWord.equals("take")) {
+        }  else if (commandWord.equals("unequip")) {
+      	  if (player.getEquipped().contains(secondWord)) {
+    		  Inventory temp = player.getPlayerInv();
+    		  Inventory temp2 = player.getEquipped();
+    		  temp.addItem(player.getEquipped().getItem(secondWord));
+    		  temp2.removeItem(player.getEquipped().getItem(secondWord));
+    		  player.setEquipped(temp2);
+    		  player.setPlayerInv(temp);
+    		  
+    		  
+    		  player.setACCURACY((int) (player.getACCURACY()*equipables.get(secondWord).getACCURACYmultiplier()));
+    		  player.setATTACK((int) (player.getATTACK()*equipables.get(secondWord).getATTACKmultiplier()));
+    		  player.setPlayerhealth((int) (player.getPlayerhealth()*equipables.get(secondWord).getPlayerhealthmultiplier()));
+    		  player.setPlayerSpeed((int) (player.getPlayerSpeed()*equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
+    	  }
+        currentRoom.setBeenhere(true);
+    }else if (commandWord.equals("equip")) {
+        	  if (player.getPlayerInv().contains(secondWord)&&equipables.containsKey(secondWord)) {
+        		  Inventory temp = player.getPlayerInv();
+        		  Inventory temp2 = player.getEquipped();
+        		  temp2.addItem(player.getPlayerInv().getItem(secondWord));
+        		  temp.removeItem(player.getPlayerInv().getItem(secondWord));
+        		  player.setEquipped(temp2);
+        		  player.setPlayerInv(temp);
+        		  
+        		  
+        		  player.setACCURACY((int) (player.getACCURACY()/equipables.get(secondWord).getACCURACYmultiplier()));
+        		  player.setATTACK((int) (player.getATTACK()/equipables.get(secondWord).getATTACKmultiplier()));
+        		  player.setPlayerhealth((int) (player.getPlayerhealth()/equipables.get(secondWord).getPlayerhealthmultiplier()));
+        		  player.setPlayerSpeed((int) (player.getPlayerSpeed()/equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
+        	  }
+            currentRoom.setBeenhere(true);
+        }else if (commandWord.equals("take")) {
             if (currentRoom.getInventory().contains(secondWord)) {
                 Inventory tempinventory = player.getPlayerInv();
                 Inventory currentroominventory = currentRoom.getInventory();
