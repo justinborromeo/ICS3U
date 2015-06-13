@@ -1,3 +1,11 @@
+/*
+ * Names: Justin Borromeo and Shon Czinner
+ * Course: ICS3U-AP
+ * Title: Zork Assignment
+ * Due Date: June 13, 2015
+ * Teacher: Mr. Deslauriers
+ */
+
 package com.bayviewglen.zork;
 import java.io.File;
 import java.io.FileInputStream;
@@ -22,10 +30,14 @@ class Game implements Serializable {
     private boolean dead;
     private boolean playerwin;
     private Scanner keyboard = new Scanner(System.in);
+    
+    //Creates instances of the two enemies in the game.
     private Troll troll = new Troll(20, 50);
     private BarbarianKing king=new BarbarianKing(100, 35);
+    
     //equipables stores items (weapons) that can be equipped.
     private HashMap < String, Equipable > equipables;
+    
     //foods stores items (food) that can be eaten for a HP boost.
     private HashMap < String, Food > foods;
     /*
@@ -33,6 +45,8 @@ class Game implements Serializable {
      * The key will be the name of the room -> no spaces (Using all caps and underscore).
      */
     private HashMap < String, Room > masterRoomMap;
+    
+    //initRooms initializes the rooms from the Rooms.dat and populates the data fields for each room.
     private void initRooms(String fileName) throws Exception {
         masterRoomMap = new HashMap < String, Room > ();
         Scanner roomScanner;
@@ -79,12 +93,13 @@ class Game implements Serializable {
                     masterRoomMap.get(roomName.toUpperCase().substring(roomName.indexOf(":") + 1).trim().replaceAll(
                         " ", "_")).setKeyname(keyname);
                 }
+                //Set enemies
                 String enemyline = roomScanner.nextLine();
                 String enemy = enemyline.split(":")[1].trim();
                 masterRoomMap.get(roomName.toUpperCase().substring(roomName.indexOf(":") + 1).trim().replaceAll(
                     " ", "_")).setEnemytype(enemy);
-                // Now we better set the exits.
             }
+            //Set exits
             for (String key: masterRoomMap.keySet()) {
                 Room roomTemp = masterRoomMap.get(key);
                 HashMap < String, String > tempExits = exits.get(key);
@@ -101,6 +116,8 @@ class Game implements Serializable {
             e.printStackTrace();
         }
     }
+    
+    //initEquipables creates a hashmap of items that can be equipped (weapons)
     private void initEquipables(String fileName) {
         equipables = new HashMap < String, Equipable > ();
         Scanner fileScanner;
@@ -118,6 +135,7 @@ class Game implements Serializable {
             e.printStackTrace();
         }
     }
+    //initFoods creates a hashmap with all the items that can be eaten.
     private void initFoods(String fileName) {
             foods = new HashMap < String, Food > ();
             Scanner fileScanner;
@@ -133,6 +151,8 @@ class Game implements Serializable {
                 e.printStackTrace();
             }
         }
+    
+    //Game runs all of the initialisation methods.
     public Game() {
             try {
                 initRooms("data/Rooms.dat");
@@ -145,6 +165,7 @@ class Game implements Serializable {
             }
             parser = new Parser();
         }
+    //Play is the main game class; this features all the playable parts of the game
     public void play() throws InterruptedException {
             System.out.println(
                 "If you'd like to use a savefile type YES and press enter, if not press literally anything else"
@@ -189,6 +210,9 @@ class Game implements Serializable {
             	System.out.println("Congratulations!  You have defeated the king and have won!.");
             System.out.println("Thank you for playing.");
     }
+    
+    
+    //Prints a welcome and prints the first room's long description.
     private void printWelcome() {
             System.out.println();
             System.out.println("Hello " + player.getName() +
@@ -199,16 +223,17 @@ class Game implements Serializable {
             );
             String useless = keyboard.nextLine();
             System.out.println();
-            if (!(currentRoom.isBeenhere()))
-                System.out.println(currentRoom.longDescription());
-            else
-                System.out.println(currentRoom.getRoomName());
+            System.out.println(currentRoom.longDescription());
+            
         }
+    
+    	//processCommand takes the input and decides what to do based on it
         private boolean processCommand(Command command) throws InterruptedException {
             if (command.isUnknown()) {
                 System.out.println("I don't know what you mean...");
                 return false;
             }
+            //commandWord=action, secondWord=what the action applies to
             String commandWord = command.getCommandWord();
             String secondWord = command.getSecondWord();
             if (commandWord.equals("help")) {
@@ -249,6 +274,7 @@ class Game implements Serializable {
                 }
                 currentRoom.setBeenhere(true);
             } else if (commandWord.equals("take")) {
+            	//the take function adds the item to the player's inventory then removes it from the room's inventory
                 if (currentRoom.getInventory().contains(secondWord)) {
                     Inventory tempinventory = player.getPlayerInv();
                     Inventory currentroominventory = currentRoom.getInventory();
@@ -259,6 +285,7 @@ class Game implements Serializable {
                     System.out.println("Taken!");
                     currentRoom.setBeenhere(true);
                 } else if (commandWord.equals("drop")) {
+                //the drop function removes the item from the player's inventory then adds it to the room's inventory
                     if (secondWord != null && player.getPlayerInv().contains(secondWord)) {
                         Inventory tempinventory = player.getPlayerInv();
                         Inventory currentroominventory = currentRoom.getInventory();
@@ -278,7 +305,7 @@ class Game implements Serializable {
                     currentRoom.setBeenhere(true);
                 }
             } else if (commandWord.equals("inv")) {
-                //PrintInventory
+                //Prints inventory
                 System.out.println("Your inventory:");
                 player.getPlayerInv().print();
                 System.out.println("Current Health:" + player.getPlayerhealth());
@@ -291,6 +318,7 @@ class Game implements Serializable {
                     boolean trolldead = trollBattleMove();
                     currentRoom.setBeenhere(true);
                     if (trolldead) {
+                    	//if troll is dead, the bedroom's description and enemytype (there isn't any enemy now) is altered
                         masterRoomMap.get("BEDROOM").setBeenhere(false);
                         masterRoomMap.get("BEDROOM").setDescription(masterRoomMap.get("BEDROOM_WITHOUT_TROLL")
                             .getDescription());
