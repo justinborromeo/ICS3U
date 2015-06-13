@@ -14,6 +14,7 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Scanner;
+
 class Game implements Serializable {
     private Parser parser;
     private Room currentRoom;
@@ -22,7 +23,7 @@ class Game implements Serializable {
     private boolean playerwin;
     private Scanner keyboard = new Scanner(System.in);
     private Troll troll = new Troll(20, 50);
-    private BarbarianKing king=new BarbarianKing(100, 20);
+    private BarbarianKing king=new BarbarianKing(100, 35);
     private HashMap < String, Equipable > equipables;
     private HashMap < String, Food > foods;
     // This is a MASTER object that contains all of the rooms and is easily accessible.
@@ -129,9 +130,6 @@ class Game implements Serializable {
                 e.printStackTrace();
             }
         }
-        /**
-         * Create the game and initialise its internal map.
-         */
     public Game() {
             try {
                 initRooms("data/Rooms.dat");
@@ -144,10 +142,6 @@ class Game implements Serializable {
             }
             parser = new Parser();
         }
-        /**
-         *  Main play routine.  Loops until end of play.
-         * @throws InterruptedException 
-         */
     public void play() throws InterruptedException {
             System.out.println(
                 "If you'd like to use a savefile type YES and press enter, if not press literally anything else"
@@ -173,7 +167,7 @@ class Game implements Serializable {
             // Enter the main command loop.  Here we repeatedly read commands and
             // execute them until the game is over.
             boolean finished = false;
-            while (!finished) {
+            while (!finished&&!dead&&!playerwin) {
                 if (player.getPlayerhealth() == 0)
                     break;
                 Command command = parser.getCommand();
@@ -191,10 +185,7 @@ class Game implements Serializable {
             if(playerwin)
             	System.out.println("Congratulations!  You have defeated the king and have won!.");
             System.out.println("Thank you for playing.");
-        }
-        /**
-         * Print out the opening message for the player.
-         */
+    }
     private void printWelcome() {
             System.out.println();
             System.out.println("Hello " + player.getName() +
@@ -210,12 +201,7 @@ class Game implements Serializable {
             else
                 System.out.println(currentRoom.getRoomName());
         }
-        /**
-         * Given a command, process (that is: execute) the command.
-         * If this command ends the game, true is returned, otherwise false is
-         * returned.
-         */
-    private boolean processCommand(Command command) throws InterruptedException {
+        private boolean processCommand(Command command) throws InterruptedException {
             if (command.isUnknown()) {
                 System.out.println("I don't know what you mean...");
                 return false;
@@ -311,12 +297,9 @@ class Game implements Serializable {
                 } else if (secondWord.toUpperCase().equals("BARBARIAN KING") || secondWord.toUpperCase().equals(
                         "KING") || secondWord.toUpperCase().equals("BARBARIAN") && currentRoom.getEnemytype()
                     .toUpperCase().equals("BARBARIAN KING")) {
-                    
-                	//Battle King
                     boolean kingdead = kingBattleMove();
-                    if (kingdead) {
+                    if (kingdead) 
                        playerwin=true;
-                    } 	
                 	currentRoom.setBeenhere(true);
                 } else {
                     System.out.println("There are no " + secondWord + "s here!!!");
@@ -420,23 +403,26 @@ class Game implements Serializable {
             int originalenemyhealth = king.getKinghealth();
             int enemyaccuracy = king.getKingaccuracy();
             king.setKinghealth(playerAttack(playeraccuracy, originalenemyhealth));
-            player.setPlayerhealth(kingAttack(enemyaccuracy, originalplayerhealth));
-            if (king.getKinghealth() == 0) {
-                System.out.println("You have slain the king.");
-                return true;
-            } else if (player.getPlayerhealth() <= 0) {
-                System.out.println("You have died");
+            if(king.getKinghealth()!=0){
+            	player.setPlayerhealth(kingAttack(enemyaccuracy, originalplayerhealth));
+        	}else{
+        		System.out.println("You have slain the king.");
+        		return true;
+        	}if (player.getPlayerhealth() <= 0) {
+                System.out.println("You have died!");
+                dead=true;
+                return false;
             }
-            return false;
-			
+        	return false;
+            
 		}
         private int kingAttack(int enemyaccuracy, int playerhealth) {
             int randomized = (int)(Math.random() * 100);
             boolean success = (randomized <= enemyaccuracy);
             if (success) {
-                playerhealth -= 5;
+                playerhealth -= 20;
                 System.out.println(
-                    "The king's attack was successful and you have lost 5 health points.  You now have " +
+                    "The king's attack was successful and you have lost 20 health points.  You now have " +
                     playerhealth + " health points");
             } else {
                 System.out.println("The king's attack was unsuccessful and you still have " + playerhealth +
