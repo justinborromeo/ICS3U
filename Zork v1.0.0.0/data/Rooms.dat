@@ -68,7 +68,7 @@ Enemies:
 LIBRARY: Library
 Room Description: You are in the library.  There are many books here.  There is a locked door to the west which you might be able to pass<br>through with a key.
 Exit Rooms: E-Hall South, W-Bottom of Staircase
-Items:
+Items: 
 Locked: No
 Enemies: 
 HALLWAY: Hallway
