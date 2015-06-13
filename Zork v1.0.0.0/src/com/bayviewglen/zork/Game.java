@@ -24,11 +24,14 @@ class Game implements Serializable {
     private Scanner keyboard = new Scanner(System.in);
     private Troll troll = new Troll(20, 50);
     private BarbarianKing king=new BarbarianKing(100, 35);
+    //equipables stores items (weapons) that can be equipped.
     private HashMap < String, Equipable > equipables;
+    //foods stores items (food) that can be eaten for a HP boost.
     private HashMap < String, Food > foods;
-    // This is a MASTER object that contains all of the rooms and is easily accessible.
-    // The key will be the name of the room -> no spaces (Use all caps and underscore -> Great Room would have a key of GREAT_ROOM
-    // In a hashmap keys are case sensitive.
+    /*
+     * masterRoomMap is a MASTER object that contains all of the rooms and is easily accessible.
+     * The key will be the name of the room -> no spaces (Using all caps and underscore).
+     */
     private HashMap < String, Room > masterRoomMap;
     private void initRooms(String fileName) throws Exception {
         masterRoomMap = new HashMap < String, Room > ();
