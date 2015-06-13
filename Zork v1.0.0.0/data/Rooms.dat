@@ -1,109 +1,51 @@
-BOTTOM_OF_STAIRCASE: Bottom of Staircase
-Room Description: You are at the bottom of a dark, foreboding staircase.
-Exit Rooms: U-Top of Staircase, E-Library
-Items: 
-Locked: Yes
-Key: dusty-key
-Enemies: 
-BEDROOM_WITHOUT_TROLL: Bedroom Without Troll
-Room Description: You have slain the troll.  Sadly, it has not dropped anything valuable.
-Exit Rooms: S-Hallway
-Items: 
-Locked: No
-Enemies: 
-TOP_OF_STAIRCASE: Top of Staircase
-Room Description: You are at the top of a dark, foreboding staircase.  There is a skeleton here that is eerily grinning at you. There is a door to the east.
-Exit Rooms: E-Hallway, D-Bottom of Staircase
-Items: Skeleton
-Locked: No 
-Enemies: 
 COURTYARD_SOUTH: Courtyard South
-Room Description: You are in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  There are no <br>obvious exits to the courtyard.  You are surrounded by walls to the south, east, and west but can walk around<br>the building.  The building has one barred window on the side you can see.  You can hear a bird chirping.  <br>On the ground, there is a stone with the phrase "Kill The Barbarian King".
+Room Description: You are in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  There are no <br>obvious exits to the courtyard.  You are surrounded by walls to the south, east, and west but can walk around<br>the building.  The building has one barred window on the side you can see.  You can hear a bird chirping.  <br>On the ground, there is a stone saying “Get to the roof”.
 Exit Rooms: W-Courtyard West, E-Courtyard East
 Items: Stone
 Locked: No
-Enemies: 
 COURTYARD_EAST: Courtyard East
 Room Description: You are currently in the east end of the courtyard.  A stream slowly gurgles across this part of the courtyard<br>before leaving through a 3-inch wide drainpipe in the courtyard wall.
 Exit Rooms: N-Courtyard North, S-Courtyard South
 Items: 
 Locked: No
-Enemies: 
 COURTYARD_WEST: Courtyard West
 Room Description: You are currently in the west end of the courtyard.  There is a very tall tree here which seems climbable.
 Exit Rooms: N-Courtyard North, S-Courtyard South, U-Tree
 Items: 
 Locked: No
-Enemies: 
 TREE: Tree
-Room Description: You have climbed the tree, there is a bird nest immediately beside you which contains a 'dusty-key'.
+Room Description: You have climbed the tree, there is a bird nest immediately beside you which contains a 'dusty-key'
 Exit Rooms: D-Courtyard West
-Items: dusty-key
+Items: Dusty-key
 Locked: No
-Enemies: 
 COURTYARD_NORTH: Courtyard North
 Room Description: You are currently in the north end of the courtyard.  There is a door on this side of the building.
 Exit Rooms: W-Courtyard West, E-Courtyard East, S-Hall North
 Items: 
 Locked: No
-Enemies: 
 HALL_NORTH: Hall North 
-Room Description: You are at the north end of a long hall.  Behind you, there is a door leading to the courtyard.<br>At the south end of the hallway, there are two doors.
+Room Description: You are at the north end of a long hall.  Behind you, there is a door leading to the courtyard.<br>At the south end of the hallway, there are two doors and an elevator.
 Exit Rooms: N-Courtyard North, S-Hall South
 Items: 
 Locked: No
-Enemies: 
 HALL_SOUTH: Hall South
-Room Description: You are at the south end of a long hall.  There are two doors, one to the east and one to the west. 
+Room Description: You are at the south end of a long hall.  There are two doors: one to the east and one to the west. 
 Exit Rooms: N-Hall North, E-Kitchen, W-Library
 Items: 
 Locked: No
-Enemies: 
 KITCHEN: Kitchen
-Room Description: You are in a kitchen.  There is a bag of apples, a cooked fish, a knife and a flashlight on the counter.   
+Room Description: You are in a kitchen.  There is a bag of apples and a knife on the counter and a flashlight.   
 Exit Rooms: W-Hall South
-Items: apples, knife, flashlight, fish
+Items: apples, knife, flashlight
 Locked: No
-Enemies: 
 LIBRARY: Library
-Room Description: You are in the library.  There are many books here.  There is a locked door to the west which you might be able to pass<br>through with a dusty-key.
+Room Description: You are in the library.  There are many books here.  There is a locked door to the west.
 Exit Rooms: E-Hall South, W-Bottom of Staircase
 Items: books
 Locked: No
-Enemies: 
-HALLWAY: Hallway
-Room Description: You are in a hallway.  There are doors on all sides.
-Exit rooms: W-Top of Staircase, N-Bedroom, S-Bathroom, E-Bottom Of Bright Staircase
+BOTTOM_OF_STAIRCASE: Bottom of Staircase
+Room Description: You are in a dark, foreboding staircase.
+Exit Rooms: U-Top of Staircase, E-Library
 Items: 
-Locked: No
-Enemies: 
-BEDROOM: Bedroom
-Room Description: You are in a bedroom.  An ugly troll is in this room. If you defeat it in battle, it might drop something valuable.
-Exit Rooms: S-Hallway
-Items: 
-Locked: No
-Enemies: troll
-BOTTOM_OF_BRIGHT_STAIRCASE: Bottom Of Bright Staircase
-Room Description: You are at the bottom of a bright staircase. Light streams in through a skylight 20 feet above you.
-Exit Rooms: W-Hallway, U-Top Of Bright Staircase
-Items: 
-Locked: No
-Enemies: 
-BATHROOM: Bathroom
-Room Description: A standard bathroom similar to the one inside your home.
-Exit Rooms: N-Hallway
-Items: 
-Locked: No
-Enemies: 
-TOP_OF_BRIGHT_STAIRCASE: Top Of Bright Staircase
-Room Description: You are at the top of the bright staircase.  There is an exit to the west.
-Exit Rooms: D-Bottom Of Bright Staircase, W-Hall Of The Barbarian King
-Items: 
-Locked: No
-Enemies: 
-HALL_OF_THE_BARBARIAN_KING: Hall Of The Barbarian King
-Room Description: You are in a large hall.  There is a 15-foot tall barbarian king sitting upon the largest throne you've ever seen.<br>Upon seeing you, he roars a mighty roar.
-Exit Rooms: E-Top Of Bright Staircase
-Items: 
-Locked: No
-Enemies: Barbarian King
+Locked: Yes
+KEYNAME: Dusty-key

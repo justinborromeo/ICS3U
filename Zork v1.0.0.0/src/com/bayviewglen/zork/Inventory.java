@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Inventory implements Serializable{
 private HashMap<String, Item> inventory = new HashMap<String, Item>();
 
- 
+ //k
  
 	Inventory(){
 		this.inventory = new HashMap<String, Item>();
