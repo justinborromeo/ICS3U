@@ -443,11 +443,9 @@ class Game implements Serializable {
          * command words.
          */
     private void printHelp() {
-        System.out.println(
-            "You are trapped in a apartment complex.  Your goal is to kill the Barbarian King.");
         System.out.println("Your command words are:");
         parser.showCommands();
-        System.out.println("This game was created by Justin Borromeo and Shon Czinner.");
+      
     }
     private void goRoom(Command command) {
         if (!command.hasSecondWord()) {
