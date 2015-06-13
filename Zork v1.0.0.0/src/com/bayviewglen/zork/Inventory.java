@@ -33,7 +33,7 @@ private HashMap<String, Item> inventory = new HashMap<String, Item>();
 	public void print() {
 		for (String name: inventory.keySet()){
 	
-	        System.out.println("item: " + name);  
+	        System.out.println("Item: " + name);  
 	
 		} 
 	}

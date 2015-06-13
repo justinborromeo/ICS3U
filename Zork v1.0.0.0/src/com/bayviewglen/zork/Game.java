@@ -176,6 +176,7 @@ class Game implements Serializable {
                     System.out.println(currentRoom.longDescription());
                 } else if (!(player.getPlayerhealth() == 0)) {
                     System.out.println(currentRoom.getRoomName());
+                    System.out.println(currentRoom.exitString());
                 } else {
                     break;
                 }
@@ -199,6 +200,7 @@ class Game implements Serializable {
                 System.out.println(currentRoom.longDescription());
             else
                 System.out.println(currentRoom.getRoomName());
+            System.out.println(currentRoom.exitString());
         }
         private boolean processCommand(Command command) throws InterruptedException {
             if (command.isUnknown()) {

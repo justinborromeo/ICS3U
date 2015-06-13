@@ -83,7 +83,7 @@ public class Player implements Serializable{
 	}
 
 	public void displayPlayerStats() {
-		System.out.println("Stats total: ");
+		System.out.println("Stats Total: ");
 		System.out.println("Attack: " + ATTACK);
 		System.out.println("Accuracy: " + ACCURACY);
 		System.out.println("Health: " + playerhealth);
