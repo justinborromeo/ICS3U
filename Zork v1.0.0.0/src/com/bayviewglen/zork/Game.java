@@ -321,6 +321,8 @@ class Game implements Serializable{
                 player.setPlayerInv(tempinventory);
                 System.out.println("Dropped!");
                 currentRoom.setBeenhere(true);
+                System.out.println("You now weigh: " + player.getWeight());
+                System.out.println("Your weight limit is: " + player.getWeightLimit());
             }  else {
                 System.out.println("You don't have a single " + secondWord + " in your inventory or unequipped...");
                 currentRoom.setBeenhere(true);
