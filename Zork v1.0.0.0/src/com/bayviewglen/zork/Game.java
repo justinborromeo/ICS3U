@@ -275,8 +275,11 @@ class Game implements Serializable {
                 player.setPlayerInv(tempinventory);
                 System.out.println("Taken!");
                 currentRoom.setBeenhere(true);
+            } else {
+                System.out.println("There are no " + secondWord + "s at this location!");
+                currentRoom.setBeenhere(true);
             }
-        } else if (commandWord.equals("drop")) {
+        }else if (commandWord.equals("drop")) {
             if (secondWord != null && player.getPlayerInv().contains(secondWord)) {
             	//Remove item from player inventory and add to room inventory
                 Inventory tempinventory = player.getPlayerInv();
@@ -292,11 +295,7 @@ class Game implements Serializable {
                     " in your inventory");
                 currentRoom.setBeenhere(true);
             }
-        } else {
-            System.out.println("There are no " + secondWord + "s at this location!");
-            currentRoom.setBeenhere(true);
-        }
-        if (commandWord.equals("inv")) {
+        }if (commandWord.equals("inv")) {
             //Print Inventory
             System.out.println("Your inventory:");
             player.getPlayerInv().print();
@@ -432,9 +431,9 @@ class Game implements Serializable {
         int originalenemyhealth = king.getKinghealth();
         int enemyaccuracy = king.getKingaccuracy();
         king.setKinghealth(playerAttack(playeraccuracy, originalenemyhealth));
-        if (king.getKinghealth() != 0) {
+        if (king.getKinghealth() >= 0) {
             player.setPlayerhealth(kingAttack(enemyaccuracy, originalplayerhealth));
-        } else {
+        } else{
             System.out.println("You have slain the king.");
             return true;
         }
@@ -505,8 +504,9 @@ class Game implements Serializable {
         int originalenemyhealth = troll.getTrollhealth();
         int enemyaccuracy = troll.getTrollaccuracy();
         troll.setTrollhealth(playerAttack(playeraccuracy, originalenemyhealth));
-        player.setPlayerhealth(trollAttack(enemyaccuracy, originalplayerhealth));
-        if (troll.getTrollhealth() == 0) {
+        if(troll.getTrollhealth()>=0)
+        	player.setPlayerhealth(trollAttack(enemyaccuracy, originalplayerhealth));
+        if (troll.getTrollhealth() <= 0) {
             System.out.println("Congratulations!  You have slain a troll.");
             return true;
         } else if (player.getPlayerhealth() <= 0) {
@@ -523,10 +523,10 @@ class Game implements Serializable {
             System.out.println(
                 "Your attack was successful and the enemy has lost " + player.getATTACK() +
                 " health points.  It now has " +
-                enemyhealth + " health points");
+                enemyhealth + " health points.");
         } else {
             System.out.println("Your attack was unsuccessful and the enemy still has " + enemyhealth +
-                " health points");
+                " health points.");
         }
         return enemyhealth;
     }
@@ -538,10 +538,10 @@ class Game implements Serializable {
             playerhealth -= 5;
             System.out.println(
                 "The troll's attack was successful and you have lost 5 health points.  You now have " +
-                playerhealth + " health points");
+                playerhealth + " health points.");
         } else {
             System.out.println("The troll's attack was unsuccessful and you still have " + playerhealth +
-                " health points");
+                " health points.");
         }
         return playerhealth;
     }
