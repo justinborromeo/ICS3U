@@ -18,7 +18,7 @@ Items: Skeleton
 Locked: No 
 Enemies: 
 COURTYARD_SOUTH: Courtyard South
-Room Description: You are in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  There are no <br>obvious exits to the courtyard.  You are surrounded by walls to the south, east, and west but can walk around<br>the building.  The building has one barred window on the side you can see.  You can hear a bird chirping.  <br>On the ground, there is a stone with the phrase "Kill The Barbarian King".
+Room Description: You are in the south end of a sunny treed courtyard that surrounds a large 3-storey building.  You are surrounded by large stones.  There are no <br>obvious exits from the courtyard.  You are surrounded by walls to the south, east, and west but can walk around<br>the building.  The building has one barred window on the side you can see.  You can hear a bird chirping.  <br>On the ground, there is a plaque with the phrase "Kill The Barbarian King".
 Exit Rooms: W-Courtyard West, E-Courtyard East
 Items: Stone
 Locked: No
@@ -90,13 +90,13 @@ Items:
 Locked: No
 Enemies: 
 BATHROOM: Bathroom
-Room Description: A standard bathroom similar to the one inside your home.
+Room Description: You are in a standard bathroom similar to the one inside your home.
 Exit Rooms: N-Hallway
 Items: 
 Locked: No
 Enemies: 
 TOP_OF_BRIGHT_STAIRCASE: Top Of Bright Staircase
-Room Description: You are at the top of the bright staircase.  There is an exit to the west.
+Room Description: You are at the top of a bright staircase.  There is an exit to the west.
 Exit Rooms: D-Bottom Of Bright Staircase, W-Hall Of The Barbarian King
 Items: 
 Locked: No
