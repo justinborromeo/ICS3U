@@ -42,13 +42,13 @@ Items: key
 Locked: No
 Enemies: 
 COURTYARD_NORTH: Courtyard North
-Room Description: You are currently in the north end of the courtyard.  There is a door on this side of the building.
+Room Description: You are currently in the north end of the courtyard.  There is an entrance to the building to the south.
 Exit Rooms: W-Courtyard West, E-Courtyard East, S-Hall North
 Items: 
 Locked: No
 Enemies: 
 HALL_NORTH: Hall North 
-Room Description: You are at the north end of a long hall.  Behind you, there is a door leading to the courtyard.<br>At the south end of the hallway, there are two doors.
+Room Description: You are at the north end of a long hall.  To the north, there is an open door leading to the courtyard.<br>At the south end of the hallway, there are two doors: one to the east and one to the west.
 Exit Rooms: N-Courtyard North, S-Hall South
 Items: 
 Locked: No

@@ -301,7 +301,7 @@ class Game implements Serializable {
             player.getPlayerInv().print();
             System.out.println("Current Health:" + player.getPlayerhealth());
         } else if (commandWord.equals("attack")) {
-            if (secondWord.equals(null)) {
+            if (secondWord==null) {
                 System.out.println("Attack what?");
             } else if (secondWord.compareTo("troll") == 0 && currentRoom.getEnemytype().compareTo("troll") ==
                 0) {
