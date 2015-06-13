@@ -111,7 +111,7 @@ class Game implements Serializable{
 			while(fileScanner.hasNext()){
 				String[] temp = fileScanner.nextLine().split("~");
 				Equipable temp2 = new Equipable(temp[0], Double.parseDouble(temp[1]), Double.parseDouble(temp[2]),
-						Double.parseDouble(temp[3]), Double.parseDouble(temp[4]));
+						Double.parseDouble(temp[3]), Double.parseDouble(temp[4]), Integer.parseInt(temp[5]));
 				equipables.put(temp[0], temp2);
 			}
 		} catch (FileNotFoundException e) {
@@ -126,7 +126,7 @@ class Game implements Serializable{
     			fileScanner = new Scanner(new File(fileName));
     			while(fileScanner.hasNext()){
     				String[] temp = fileScanner.nextLine().split("~");
-    				Food temp2 = new Food(temp[0], Integer.parseInt(temp[1]));
+    				Food temp2 = new Food(temp[0], Integer.parseInt(temp[1]), Integer.parseInt(temp[2]));
     					
     				foods.put(temp[0], temp2);
     			}
@@ -257,10 +257,10 @@ class Game implements Serializable{
     		  player.setPlayerInv(temp);
     		  
     		  
-    		  player.setACCURACY((int) (player.getACCURACY()*equipables.get(secondWord).getACCURACYmultiplier()));
-    		  player.setATTACK((int) (player.getATTACK()*equipables.get(secondWord).getATTACKmultiplier()));
-    		  player.setPlayerhealth((int) (player.getPlayerhealth()*equipables.get(secondWord).getPlayerhealthmultiplier()));
-    		  player.setPlayerSpeed((int) (player.getPlayerSpeed()*equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
+    		  player.setACCURACY((int) (player.getACCURACY()/equipables.get(secondWord).getACCURACYmultiplier()));
+    		  player.setATTACK((int) (player.getATTACK()/equipables.get(secondWord).getATTACKmultiplier()));
+    		  player.setPlayerhealth((int) (player.getPlayerhealth()/equipables.get(secondWord).getPlayerhealthmultiplier()));
+    		  player.setPlayerSpeed((int) (player.getPlayerSpeed()/equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
     		  
     		 player.displayPlayerStats();
     	  }
@@ -275,15 +275,25 @@ class Game implements Serializable{
         		  player.setPlayerInv(temp);
         		  
         		  
-        		  player.setACCURACY((int) (player.getACCURACY()/equipables.get(secondWord).getACCURACYmultiplier()));
-        		  player.setATTACK((int) (player.getATTACK()/equipables.get(secondWord).getATTACKmultiplier()));
-        		  player.setPlayerhealth((int) (player.getPlayerhealth()/equipables.get(secondWord).getPlayerhealthmultiplier()));
-        		  player.setPlayerSpeed((int) (player.getPlayerSpeed()/equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
+        		  player.setACCURACY((int) (player.getACCURACY()*equipables.get(secondWord).getACCURACYmultiplier()));
+        		  player.setATTACK((int) (player.getATTACK()*equipables.get(secondWord).getATTACKmultiplier()));
+        		  player.setPlayerhealth((int) (player.getPlayerhealth()*equipables.get(secondWord).getPlayerhealthmultiplier()));
+        		  player.setPlayerSpeed((int) (player.getPlayerSpeed()*equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
         		  player.displayPlayerStats();
         	  }
             currentRoom.setBeenhere(true);
         }else if (commandWord.equals("take")) {
             if (secondWord!=null&&currentRoom.getInventory().contains(secondWord)) {
+            	int newWeight = 0;
+            	if(equipables.containsKey(secondWord)){
+                	newWeight = player.getWeight()+equipables.get(secondWord).getWeight();
+                }
+            	else if(foods.containsKey(secondWord)){
+            		newWeight = player.getWeight()+foods.get(secondWord).getWeight();
+                }
+            	if(newWeight>player.getWeightLimit()){
+            		System.out.println("You weigh too much");
+            	}else{
                 Inventory tempinventory = player.getPlayerInv();
                 Inventory currentroominventory = currentRoom.getInventory();
                 Item toTake = currentroominventory.getItem(secondWord);
@@ -292,6 +302,10 @@ class Game implements Serializable{
                 player.setPlayerInv(tempinventory);
                 System.out.println("Taken!");
                 currentRoom.setBeenhere(true);
+                System.out.println("You now weigh: " + newWeight);
+                System.out.println("Your weight limit is: " + player.getWeightLimit());
+                }
+                
             }  else {
                 System.out.println("There are no " + secondWord + "s at this location!");
                 currentRoom.setBeenhere(true);
@@ -316,6 +330,7 @@ class Game implements Serializable{
         	System.out.println("Your inventory:");
         	player.getPlayerInv().print();  
         	System.out.println("Current Health:" + player.getPlayerhealth());
+        	player.displayPlayerStats();
         	
         	
         } else if (commandWord.equals("attack")) {

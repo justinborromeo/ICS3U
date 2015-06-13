@@ -13,6 +13,8 @@ public class Player implements Serializable{
 	private int PLAYER_SPEED;
 	private int ACCURACY;
 	private int ATTACK;
+	private int weightLimit;
+	private int weight;
 	
 	public Player(String name){
 		this.name = name;
@@ -22,6 +24,8 @@ public class Player implements Serializable{
 		PLAYER_SPEED=50;
 		ACCURACY=50;
 		ATTACK=10;
+		weightLimit=100;
+		weight=0;
 	}
 	
 	public int getPlayerSpeed() {
@@ -85,6 +89,22 @@ public class Player implements Serializable{
 		System.out.println("Health: " + playerhealth);
 		System.out.println("Equipped:");
 		equipped.print();
+	}
+
+	public int getWeightLimit() {
+		return weightLimit;
+	}
+
+	public void setWeightLimit(int weightLimit) {
+		this.weightLimit = weightLimit;
+	}
+
+	public int getWeight() {
+		return weight;
+	}
+
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 
 
