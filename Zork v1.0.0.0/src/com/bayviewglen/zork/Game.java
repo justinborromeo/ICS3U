@@ -203,6 +203,7 @@ class Game implements Serializable{
                 System.out.println(currentRoom.longDescription());
             }else if(!dead){
                 System.out.println(currentRoom.getRoomName());
+                System.out.println(currentRoom.exitString());
             }else{
             	break;
             }
