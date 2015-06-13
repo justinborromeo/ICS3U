@@ -261,7 +261,7 @@ class Game implements Serializable{
     		  player.setATTACK((int) (player.getATTACK()/equipables.get(secondWord).getATTACKmultiplier()));
     		  player.setPlayerhealth((int) (player.getPlayerhealth()/equipables.get(secondWord).getPlayerhealthmultiplier()));
     		  player.setPlayerSpeed((int) (player.getPlayerSpeed()/equipables.get(secondWord).getPLAYER_SPEEDmultiplier()));
-    		  
+    		  //lol
     		 player.displayPlayerStats();
     	  }
         currentRoom.setBeenhere(true);
