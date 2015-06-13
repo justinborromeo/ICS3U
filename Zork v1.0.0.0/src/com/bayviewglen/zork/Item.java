@@ -3,7 +3,7 @@ package com.bayviewglen.zork;
 import java.io.Serializable;
 
 public class Item implements Serializable{
-
+//An Item object is anything that can be taken in the game.
 	private String name;
 	
 	public Item(String name){

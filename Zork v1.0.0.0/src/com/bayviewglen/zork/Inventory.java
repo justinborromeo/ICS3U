@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Inventory implements Serializable{
 private HashMap<String, Item> inventory = new HashMap<String, Item>();
 
- //k
+ //An Inventory object is a hashmap of items in a room or belonging to the player
  
 	Inventory(){
 		this.inventory = new HashMap<String, Item>();

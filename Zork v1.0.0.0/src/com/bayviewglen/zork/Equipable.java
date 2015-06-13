@@ -1,5 +1,10 @@
 package com.bayviewglen.zork;
 
+/*
+ * This is an object class for any item that can be equipped (any weapon).  The class extends the Item class.
+ * The multipliers indicate the statistic boost given by the Equipable item.
+ */
+
 public class Equipable extends Item{
 	private double playerhealthmultiplier;
 	private double PLAYER_SPEEDmultiplier;
@@ -20,7 +25,6 @@ public class Equipable extends Item{
 	
 	public Equipable(String name) {
 		super(name);
-		// TODO Auto-generated constructor stub
 	}
 
 

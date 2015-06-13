@@ -1,5 +1,8 @@
 package com.bayviewglen.zork;
-
+/*
+ * This is an object class for any item that can be eaten (food).  The class extends the Item class.
+ * The heal variable indicates the size of the food item's Health Point (HP) boost.
+ */
 public class Food extends Item{
 	private int heal;
 	private int weight;

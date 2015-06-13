@@ -2,7 +2,7 @@ package com.bayviewglen.zork;
 
 import java.io.Serializable;
 
-
+//Player class contains instance variables for the player (most are constant)
 
 public class Player implements Serializable{
 

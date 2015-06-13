@@ -1,5 +1,5 @@
 package com.bayviewglen.zork;
-
+//This is the object class for the troll enemy with getters and setters.
 import java.io.Serializable;
 
 public class Troll implements Serializable{
