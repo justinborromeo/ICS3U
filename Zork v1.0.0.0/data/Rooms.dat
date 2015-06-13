@@ -3,7 +3,7 @@ Room Description: You are at the bottom of a dark, foreboding staircase.
 Exit Rooms: U-Top of Staircase, E-Library
 Items: 
 Locked: Yes
-Key: dusty-key
+Key: key
 Enemies: 
 BEDROOM_WITHOUT_TROLL: Bedroom Without Troll
 Room Description: You have slain the troll.  Sadly, it has not dropped anything valuable.
@@ -36,9 +36,9 @@ Items:
 Locked: No
 Enemies: 
 TREE: Tree
-Room Description: You have climbed the tree, there is a bird nest immediately beside you which contains a 'dusty-key'.
+Room Description: You have climbed the tree, there is a bird nest immediately beside you which contains a key.
 Exit Rooms: D-Courtyard West
-Items: dusty-key
+Items: key
 Locked: No
 Enemies: 
 COURTYARD_NORTH: Courtyard North
@@ -60,13 +60,13 @@ Items:
 Locked: No
 Enemies: 
 KITCHEN: Kitchen
-Room Description: You are in a kitchen.  There is a bag of apples, a cooked fish, a knife and a flashlight on the counter.   
+Room Description: You are in a kitchen.  There is a bag of apples, a cooked fish and a knife on the counter.   
 Exit Rooms: W-Hall South
-Items: apples, knife, flashlight, fish
+Items: apples, knife, fish
 Locked: No
 Enemies: 
 LIBRARY: Library
-Room Description: You are in the library.  There are many books here.  There is a locked door to the west which you might be able to pass<br>through with a dusty-key.
+Room Description: You are in the library.  There are many books here.  There is a locked door to the west which you might be able to pass<br>through with a key.
 Exit Rooms: E-Hall South, W-Bottom of Staircase
 Items: books
 Locked: No

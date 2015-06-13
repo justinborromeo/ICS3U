@@ -200,7 +200,7 @@ class Game implements Serializable {
                 System.out.println(currentRoom.longDescription());
             else
                 System.out.println(currentRoom.getRoomName());
-            System.out.println(currentRoom.exitString());
+            	
         }
         private boolean processCommand(Command command) throws InterruptedException {
             if (command.isUnknown()) {
@@ -256,26 +256,26 @@ class Game implements Serializable {
                     player.setPlayerInv(tempinventory);
                     System.out.println("Taken!");
                     currentRoom.setBeenhere(true);
-                } else if (commandWord.equals("drop")) {
-                    if (secondWord != null && player.getPlayerInv().contains(secondWord)) {
-                        Inventory tempinventory = player.getPlayerInv();
-                        Inventory currentroominventory = currentRoom.getInventory();
-                        Item toTake = tempinventory.getItem(secondWord);
-                        currentroominventory.addItem(toTake);
-                        tempinventory.removeItem(toTake);
-                        player.setPlayerInv(tempinventory);
-                        System.out.println("Dropped!");
-                        currentRoom.setBeenhere(true);
-                    } else {
+                }
+            } else if (commandWord.equals("drop")) {
+                if (secondWord != null && player.getPlayerInv().contains(secondWord)) {
+                    Inventory tempinventory = player.getPlayerInv();
+                    Inventory currentroominventory = currentRoom.getInventory();
+                    Item toTake = tempinventory.getItem(secondWord);
+                    currentroominventory.addItem(toTake);
+                    tempinventory.removeItem(toTake);
+                    player.setPlayerInv(tempinventory);
+                    System.out.println("Dropped!");
+                    currentRoom.setBeenhere(true);
+                	}else {
                         System.out.println("You don't have a single " + secondWord +
-                            " in your inventory or unequipped...");
+                            " in your inventory");
                         currentRoom.setBeenhere(true);
                     }
                 } else {
                     System.out.println("There are no " + secondWord + "s at this location!");
                     currentRoom.setBeenhere(true);
-                }
-            } else if (commandWord.equals("inv")) {
+            } if (commandWord.equals("inv")) {
                 //PrintInventory
                 System.out.println("Your inventory:");
                 player.getPlayerInv().print();
