@@ -359,7 +359,9 @@ class Game implements Serializable {
                 System.out.println("Eaten! HP: " + player.getPlayerhealth());
             } else
                 System.out.println("What are you trying to eat???");
-        } else if ((commandWord.equals("east") || commandWord.equals("north") || commandWord.equals(
+        } else if (commandWord.equals("look")){
+        	System.out.println(currentRoom.getDescription());        
+    	}else if ((commandWord.equals("east") || commandWord.equals("north") || commandWord.equals(
                     "south") ||
                 commandWord.equals("west") || commandWord.equals("up") || commandWord.equals("down"))) {
         	//Navigation commands
